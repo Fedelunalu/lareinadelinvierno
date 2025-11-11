@@ -1,0 +1,100 @@
+[gd_scene load_steps=10 format=3]
+
+[ext_resource type="PackedScene" path="res://characters/player.tscn" id="1"]
+[ext_resource type="Texture2D" path="res://sprites/idle/spritesheet.png" id="2"]
+[ext_resource type="Texture2D" path="res://sprites/fondo.png" id="3"]
+[ext_resource type="Script" path="res://scenes/camera.gd" id="4"]
+[ext_resource type="Script" path="res://scenes/parallax_background.gd" id="5"]
+[ext_resource type="AudioStream" path="res://sprites/baloncesto16bit_cajita.ogg" id="6"]
+[ext_resource type="PackedScene" path="res://ui/dialogue_ui.tscn" id="7"]
+[ext_resource type="PackedScene" path="res://npcs/amante.tscn" id="8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1"]
+size = Vector2(10000, 32)
+
+[node name="Main" type="Node2D"]
+
+[node name="Background" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0.7, 0.85, 1, 1)
+
+[node name="ParallaxBackground" type="Node2D" parent="."]
+script = ExtResource("5")
+camera_path = NodePath("../Camera2D")
+
+[node name="BackgroundSprite" type="Sprite2D" parent="ParallaxBackground"]
+texture = ExtResource("3")
+position = Vector2(0, 300)
+scale = Vector2(1.2, 1.2)
+z_index = -10
+modulate = Color(1, 1, 1, 1)
+
+[node name="BackgroundSprite2" type="Sprite2D" parent="ParallaxBackground"]
+texture = ExtResource("3")
+position = Vector2(1200, 280)
+scale = Vector2(1.0, 1.0)
+z_index = -10
+modulate = Color(0.9, 0.9, 1.1, 0.9)
+
+[node name="BackgroundSprite3" type="Sprite2D" parent="ParallaxBackground"]
+texture = ExtResource("3")
+position = Vector2(2400, 320)
+scale = Vector2(1.4, 1.4)
+z_index = -10
+modulate = Color(1.1, 0.9, 0.9, 0.8)
+
+[node name="BackgroundSprite4" type="Sprite2D" parent="ParallaxBackground"]
+texture = ExtResource("3")
+position = Vector2(3600, 310)
+scale = Vector2(1.1, 1.1)
+z_index = -10
+modulate = Color(0.9, 1.1, 0.9, 0.85)
+
+[node name="BackgroundSprite5" type="Sprite2D" parent="ParallaxBackground"]
+texture = ExtResource("3")
+position = Vector2(4800, 290)
+scale = Vector2(0.9, 0.9)
+z_index = -10
+modulate = Color(1.1, 0.9, 1.1, 0.9)
+
+[node name="Ground" type="StaticBody2D" parent="."]
+position = Vector2(0, 550)
+
+[node name="Ground/CollisionShape2D" type="CollisionShape2D" parent="Ground"]
+shape = SubResource("RectangleShape2D_1")
+position = Vector2(0, 0)
+
+[node name="Ground/Sprite2D" type="Sprite2D" parent="Ground"]
+texture = ExtResource("2")
+hframes = 8
+vframes = 4
+frame = 0
+scale = Vector2(40, 2)
+position = Vector2(0, 0)
+region_enabled = true
+region_rect = Rect2(0, 0, 256, 256)
+
+[node name="Player" parent="." instance=ExtResource("1")]
+position = Vector2(400, 450)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+script = ExtResource("4")
+enabled = true
+current = true
+position = Vector2(400, 300)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6")
+autoplay = true
+bus = &"Master"
+volume_db = -10.0
+
+[node name="DialogueUI" parent="." instance=ExtResource("7")]
+
+[node name="Amante" parent="." instance=ExtResource("8")]
+position = Vector2(600, 450)
+scale = Vector2(2.0, 2.0)
+z_index = 5
+visible = true

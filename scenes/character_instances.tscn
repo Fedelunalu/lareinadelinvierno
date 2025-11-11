@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://buyjinedydumc"]
+
+[ext_resource type="PackedScene" path="res://characters/player.tscn" id="1"]
+[ext_resource type="PackedScene" path="res://characters/queen.tscn" id="2"]
+
+[node name="Characters" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource("1")]
+position = Vector2(400, 250)
+
+[node name="Queen" parent="." instance=ExtResource("2")]

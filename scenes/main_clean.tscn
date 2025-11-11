@@ -1,0 +1,44 @@
+[gd_scene load_steps=5 format=3]
+
+[ext_resource type="Texture2D" path="res://sprites/idle/spritesheet.png" id="2"]
+[ext_resource type="PackedScene" path="res://scenes/character_instances.tscn" id="3"]
+[ext_resource type="PackedScene" path="res://environment/ice_platform.tscn" id="4"]
+
+[node name="Main" type="Node2D"]
+
+[node name="Background" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0.7, 0.85, 1, 1)
+
+[node name="IcePlatform" parent="." instance=ExtResource("4")]
+position = Vector2(400, 300)
+
+[node name="CharacterInstances" parent="." instance=ExtResource("3")]
+
+[node name="BackgroundIce1" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.5)
+position = Vector2(200, 200)
+scale = Vector2(2, 2)
+texture = ExtResource("2")
+hframes = 8
+vframes = 4
+frame = 30
+
+[node name="BackgroundIce2" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.3)
+position = Vector2(600, 150)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("2")
+hframes = 8
+vframes = 4
+frame = 25
+
+[node name="BackgroundIce3" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.4)
+position = Vector2(100, 100)
+texture = ExtResource("2")
+hframes = 8
+vframes = 4
+frame = 28

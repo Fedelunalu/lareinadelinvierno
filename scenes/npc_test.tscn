@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3]
+
+[ext_resource type="PackedScene" path="res://characters/player.tscn" id="1"]
+[ext_resource type="PackedScene" path="res://npcs/amante.tscn" id="2"]
+[ext_resource type="Texture2D" path="res://sprites/idle/spritesheet.png" id="3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1"]
+size = Vector2(10000, 32)
+
+[node name="Main" type="Node2D"]
+
+[node name="Ground" type="StaticBody2D" parent="."]
+position = Vector2(0, 550)
+
+[node name="Ground/CollisionShape2D" type="CollisionShape2D" parent="Ground"]
+shape = SubResource("RectangleShape2D_1")
+position = Vector2(0, 0)
+
+[node name="Ground/Sprite2D" type="Sprite2D" parent="Ground"]
+texture = ExtResource("3")
+hframes = 8
+vframes = 4
+frame = 0
+scale = Vector2(40, 2)
+position = Vector2(0, 0)
+
+[node name="Player" parent="." instance=ExtResource("1")]
+position = Vector2(400, 450)
+
+[node name="Amante" parent="." instance=ExtResource("2")]
+position = Vector2(600, 450)

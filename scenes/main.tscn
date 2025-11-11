@@ -1,0 +1,98 @@
+[gd_scene load_steps=11 format=3 uid="uid://d3m5wlggs2mbw"]
+
+[ext_resource type="Texture2D" uid="uid://cr5sm8eh646n5" path="res://sprites/idle/spritesheet.png" id="2"]
+[ext_resource type="Script" uid="uid://5fo21hfre4hg" path="res://npcs/winter_creature.gd" id="3"]
+[ext_resource type="Script" uid="uid://uikpnei5o62s" path="res://npcs/royal_advisor.gd" id="4"]
+[ext_resource type="PackedScene" uid="uid://buyjinedydumc" path="res://scenes/character_instances.tscn" id="6"]
+[ext_resource type="PackedScene" path="res://environment/ice_platform.tscn" id="7"]
+[ext_resource type="PackedScene" path="res://ui/dialogue_ui.tscn" id="8"]
+[ext_resource type="PackedScene" uid="uid://0y68hhjy0pwg" path="res://npcs/amante.tscn" id="9"]
+[ext_resource type="Script" path="res://scenes/camera.gd" id="10"]
+[ext_resource type="Texture2D" path="res://sprites/fondo.png" id="11"]
+[ext_resource type="AudioStream" path="res://sprites/baloncesto16bit_cajita.ogg" id="12"]
+
+[node name="Main" type="Node2D"]
+
+[node name="Background" type="Sprite2D" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource("11")
+scale = Vector2(1.5, 1.5)
+
+[node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("12")
+autoplay = true
+volume_db = -10
+
+[node name="IcePlatform" parent="." instance=ExtResource("7")]
+position = Vector2(400, 480)
+
+[node name="TitleLabel" type="Label" parent="."]
+text = "La Reina del Invierno - Presiona F5 para jugar"
+
+[node name="CharacterInstances" parent="." instance=ExtResource("6")]
+
+[node name="WinterCreature" type="Area2D" parent="."]
+position = Vector2(700, 300)
+script = ExtResource("3")
+
+[node name="CreatureSprite" type="Sprite2D" parent="WinterCreature"]
+position = Vector2(0, -20)
+texture = ExtResource("2")
+hframes = 8
+vframes = 4
+
+[node name="RoyalAdvisor" type="Area2D" parent="."]
+position = Vector2(301, 400)
+script = ExtResource("4")
+
+[node name="AdvisorSprite" type="Sprite2D" parent="RoyalAdvisor"]
+position = Vector2(0, -20)
+texture = ExtResource("2")
+hframes = 8
+vframes = 4
+
+[node name="Amante" parent="." instance=ExtResource("9")]
+position = Vector2(500, 400)
+
+[node name="DialogueUI" parent="." instance=ExtResource("8")]
+
+[node name="InteractLabel" type="Label" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+text = "Presiona E o Espacio para interactuar"
+horizontal_alignment = 1
+vertical_alignment = 1
+visible = false
+
+[node name="BackgroundIce1" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.5)
+position = Vector2(200, 400)
+scale = Vector2(2, 2)
+texture = ExtResource("2")
+hframes = 8
+vframes = 4
+frame = 30
+
+[node name="BackgroundIce2" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.3)
+position = Vector2(600, 350)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("2")
+hframes = 8
+vframes = 4
+frame = 25
+
+[node name="BackgroundIce3" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.4)
+position = Vector2(100, 200)
+texture = ExtResource("2")
+hframes = 8
+vframes = 4
+frame = 28
+
+[node name="Camera2D" type="Camera2D" parent="."]
+script = ExtResource("10")
+current = true

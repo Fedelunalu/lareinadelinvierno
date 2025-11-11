@@ -1,0 +1,59 @@
+[gd_scene load_steps=8 format=3]
+
+[ext_resource type="PackedScene" path="res://characters/player.tscn" id="1"]
+[ext_resource type="PackedScene" path="res://environment/ice_platform.tscn" id="2"]
+[ext_resource type="Texture2D" path="res://sprites/escenario2.jpg" id="3"]
+[ext_resource type="Script" path="res://scenes/camera.gd" id="4"]
+[ext_resource type="Script" path="res://scenes/parallax_background.gd" id="5"]
+[ext_resource type="PackedScene" path="res://ui/dialogue_ui.tscn" id="7"]
+
+[node name="Escenario2" type="Node2D"]
+
+[node name="Background" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0.8, 0.9, 1, 1)
+
+[node name="ParallaxBackground" type="Node2D" parent="."]
+script = ExtResource("5")
+camera_path = NodePath("../Camera2D")
+
+[node name="BackgroundSprite" type="Sprite2D" parent="ParallaxBackground"]
+texture = ExtResource("3")
+position = Vector2(4000, 300)
+scale = Vector2(1.2, 1.2)
+z_index = -10
+modulate = Color(1, 1, 1, 1)
+
+[node name="BackgroundSprite2" type="Sprite2D" parent="ParallaxBackground"]
+texture = ExtResource("3")
+position = Vector2(5200, 280)
+scale = Vector2(1.0, 1.0)
+z_index = -10
+modulate = Color(0.9, 0.9, 1.1, 0.9)
+
+[node name="BackgroundSprite3" type="Sprite2D" parent="ParallaxBackground"]
+texture = ExtResource("3")
+position = Vector2(6400, 320)
+scale = Vector2(1.4, 1.4)
+z_index = -10
+modulate = Color(1.1, 0.9, 0.9, 0.8)
+
+[node name="IcePlatform" parent="." instance=ExtResource("2")]
+position = Vector2(4800, 570)
+
+[node name="IcePlatform2" parent="." instance=ExtResource("2")]
+position = Vector2(5200, 570)
+
+[node name="Player" parent="." instance=ExtResource("1")]
+position = Vector2(4200, 493)
+
+
+[node name="Camera2D" type="Camera2D" parent="."]
+script = ExtResource("4")
+enabled = true
+current = true
+position = Vector2(4200, 300)
+
+[node name="DialogueUI" parent="." instance=ExtResource("7")]
