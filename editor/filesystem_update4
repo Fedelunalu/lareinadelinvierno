@@ -1,0 +1,11 @@
+res://scenes/main.tscn
+res://scenes/character_instances.tscn
+res://characters/player.gd
+res://ui/dialogue_ui.gd
+res://npcs/amante.gd
+res://npcs/amante.tscn
+res://characters/player.tscn
+res://characters/minimal_player.gd
+res://environment/ice_platform.gd
+res://npcs/royal_advisor.gd
+res://npcs/winter_creature.gd
